@@ -1,0 +1,77 @@
+    <html>
+        <head> FORM LOGIN SESI 3 </head>
+            <style>
+                #root {
+                    background-color: rgb(26, 177, 246);
+                    color : white;
+                    font-size: 2em;
+                    text-align: center;
+                    height: 100vh;
+                }
+            </style>
+                <body>
+                        <!-- INI KONTEN -->
+                        <div id="root">
+                        <input type="text" placeholder="username" id="usernameInput" />
+                        <input type="password" placeholder="password" id="passwordInput" />
+                        <button onclick="onLogin () "id="loginbutton">LOGIN</button>
+                        <button onclick="onLogout () "id="logoutbutton">LOGOUT</button>
+                        <br/>
+                        <h1 id="admin"> LOGIN SEBAGAI ADMIN</h1>
+                        <h1 id="basic"> LOGIN SEBAGAI BIASA </h1>
+                        </div>
+
+                        <script type="application/javascript">
+
+                        let usernameInput = document.getElementById ('usernameInput');
+                        let passwordInput = document.getElementById ('passwordInput');
+                        let loginbutton = document.getElementById ('loginbutton');
+                        let logoutbutton = document.getElementById ('logoutbutton');
+                        let admin = document.getElementById ('admin');
+                        let basic = document.getElementById ('basic');
+
+                        admin.style.display = "none";
+                        basic.style.display = "none";
+                        logoutbutton.style.display = "none";
+
+                        function onLogin() {
+                        localStorage.setItem("username","usernameInput.value");
+                        logoutbutton.style.display = "block";
+                        if(usernameInput.value == "admin" && passwordInput. value == "admin123" ) {
+                                alert('login sebagai admin');
+                                localStorage.setItem("role", "admin");
+                                basic.style.display = "none"; 
+                                admin.style.display = "block";
+
+                        }else {
+                                alert('user login biasa');
+                                localStorage.setItem("role", "basic");
+                                admin.style.display = "none";
+                                basic.style.display = "block";
+                              }
+                                
+                            }
+
+
+                            if(localStorage.getItem('username')){
+                                usernameInput.style.display = "none";
+                                passwordInput.style.display = "none";
+                                loginbutton.style.display = "none";
+                                logoutbutton.style.display = "block";
+                            if(localStorage.getItem ('role')=="admin"){
+                                     basic.style.display = "none"; 
+                                     admin.style.display = "block"; 
+                                }else {
+                                    admin.style.display = "none";
+                                    basic.style.display = "block";
+                                }
+                            }
+
+                            function onLogout (){
+                                localStorage.clear ();
+                                location.reload ();
+                            }
+                     </script>
+                </body>
+            </head>
+    </html>
